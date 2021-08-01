@@ -11,7 +11,7 @@
 ### Clone this repository to your local computer
 
 ```bash
-git https://github.com/dmnlgn/handwritten-digit-recognition-CNN.git
+git clone https://github.com/dmnlgn/handwritten-digit-recognition-CNN.git
 ```
 
 ## Configuration
