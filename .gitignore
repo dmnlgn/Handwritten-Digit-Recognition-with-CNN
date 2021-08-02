@@ -2,3 +2,4 @@
 .idea
 /public/assets/model/model.json
 /public/assets/model/weights.bin
+/yarn.lock

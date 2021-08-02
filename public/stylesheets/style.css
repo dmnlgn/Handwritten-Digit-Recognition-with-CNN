@@ -6,3 +6,33 @@ body {
 a {
   color: #00B7FF;
 }
+
+#canvas-div {
+  position: inherit!important;
+  display: flex;
+  flex-direction: row;
+  align-content: baseline;
+  height: 100%;
+}
+
+#canvas {
+  border: 1px solid #676565;
+  width: 400px;
+  height: 400px;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.canvas-block {
+  max-height: 600px;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  border: 1px solid #adadad;
+  background-color: #ffffff78;
+  padding: 25px!important;
+  height: 100%;
+  grid-gap: 10px;
+}

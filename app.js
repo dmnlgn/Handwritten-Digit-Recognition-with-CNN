@@ -1,15 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+
 const argparse = require('argparse');
 const model = require('./model');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,11 +57,11 @@ parser.add_argument('--batch_size', {
 })
 parser.add_argument('--model_save_path', {
   type: 'str',
+  default: "file://./public/assets/model",
   help: 'path to which model will be saved'
 })
 parser.add_argument('--train_mode', {
   type: 'int',
-  default: 1,
   help: 'type of train model (1=true, 0=false)'
 })
 
