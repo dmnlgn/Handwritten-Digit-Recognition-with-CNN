@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="stylesheets/style.css"/>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="./javascripts/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <title>Handwritten Digit Recognition</title>
 </head>
@@ -28,6 +28,13 @@
     <div class="buttons col">
         <button class="btn btn-outline-dark" id="predict" onclick="predict()">Rozpoznaj</button>
         <button class="btn btn-outline-dark" id="clear-pred" onclick="clearCanvas()">Wyczyść</button>
+    </div>
+</div>
+<!--RESULTS SECTION-->
+<div id="result_box" class="col">
+    <div class="result-col">
+        <canvas id="chart_box" class="char_style" width="100" height="100"></canvas>
+        <div class="col-12 prediction-text" role="alert"></div>
     </div>
 </div>
 <!--  other scripts  -->
