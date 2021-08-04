@@ -1,94 +1,54 @@
-const canvasWidth = 400;
-const canvasHeight = 400;
-const canvasStrokeStyle = "white";
-const canvasLineJoin = "round";
-const canvasLineWidth = 30;
-const canvasBackgroundColor = "black";
-const canvasId = "canvas";
-
-var clickX = [];
-var clickY = [];
-var clickD = [];
-var drawing;
-
-const canvasBox = document.getElementById("canvas-div");
-const canvas = document.createElement("canvas");
-
-canvas.setAttribute("width", canvasWidth);
-canvas.setAttribute("height", canvasHeight);
-canvas.setAttribute("id", canvasId);
-canvas.style.backgroundColor = canvasBackgroundColor;
-canvasBox.appendChild(canvas);
-
 ctx = canvas.getContext("2d");
+var drawing = false;
 
-// --- mouse down function ---
-$("#canvas").mousedown(function (e) {
-    var mouseX = e.pageX - this.offsetLeft;
-    var mouseY = e.pageY - this.offsetTop;
+canvas.setAttribute("width", "400");
+canvas.setAttribute("height", "400");
 
-    drawing = true;
-    addUserGesture(mouseX, mouseY);
-    drawnOnCanvas();
-});
+const translatedX = (x) => {
+    const rect = canvas.getBoundingClientRect();
+    var factor = canvas.width / rect.width;
+    return factor * (x - rect.left);
+}
 
-// --- mouse move function ---
-$("#canvas").mousemove(function (e) {
+const translatedY = (y) => {
+    const rect = canvas.getBoundingClientRect();
+    var factor = canvas.width / rect.width;
+    return factor * (y - rect.top);
+}
+
+const drawPoint = (e) => {
+    ctx.lineWidth = 30;
+    ctx.lineCap = "round";
+    ctx.strokeStyle = "white";
+    canvas.style.backgroundColor = "black";
+
     if (drawing) {
-        var mouseX = e.pageX - this.offsetLeft;
-        var mouseY = e.pageY - this.offsetTop;
-
-        addUserGesture(mouseX, mouseY, true);
-        drawnOnCanvas();
-    }
-});
-
-// --- mouse up function ---
-$("#canvas").mouseup(function (e) {
-    drawing = false;
-});
-
-// --- mouse leave function ---
-$("#canvas").mouseleave(function (e) {
-    drawing = false;
-});
-
-// --- mouse click function ---
-const addUserGesture = (x, y, dragging) => {
-    clickX.push(x);
-    clickY.push(y);
-    clickD.push(dragging);
-};
-
-// --- re draw function ---
-const drawnOnCanvas = () => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    
-    ctx.strokeStyle = canvasStrokeStyle;
-    ctx.lineJoin = canvasLineJoin;
-    ctx.lineWidth = canvasLineWidth;
-
-    for (let i = 0; i < clickX.length; i++) {
-        ctx.beginPath();
-
-        if (clickD[i] && i) {
-            ctx.moveTo(clickX[i - 1], clickY[i - 1]);
-        } else {
-            ctx.moveTo(clickX[i] - 1, clickY[i]);
-        }
-        ctx.lineTo(clickX[i], clickY[i]);
-        ctx.closePath();
+        ctx.lineTo(translatedX(e.x), translatedY(e.y));
         ctx.stroke();
+        ctx.beginPath();
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(translatedX(e.x), translatedY(e.y));
     }
-};
+}
 
-// --- clear canvas ---
-const clearCanvas = id => {
-    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-    clickX = [];
-    clickY = [];
-    clickD = [];
-};
+const startPos = (e) => {
+    drawing = true;
+    drawPoint(e);
+}
+
+const endPos = () => {
+    drawing = false;
+    ctx.beginPath();
+}
+
+const clearCanvas = (id) => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+canvas.addEventListener('mousedown', startPos);
+canvas.addEventListener('mousemove', drawPoint);
+canvas.addEventListener('mouseup', endPos);
 
 // --- model status ---
 document.addEventListener('DOMContentLoaded', async () => {
