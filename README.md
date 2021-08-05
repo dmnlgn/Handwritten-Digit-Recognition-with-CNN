@@ -1,6 +1,6 @@
 
 # Handwritten Digit Recognition with CNN
-
+![handwritten digit recognition]https://raw.githubusercontent.com/dmnlgn/Handwritten-Digit-Recognition-with-CNN/main/public/images/digit-recognition-test.gif
 ## Installation
 
 ### Requirements
