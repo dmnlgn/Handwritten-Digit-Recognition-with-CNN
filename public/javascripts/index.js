@@ -52,6 +52,7 @@ canvas.addEventListener('mouseup', endPos);
 
 // --- model status ---
 document.addEventListener('DOMContentLoaded', async () => {
+    document.getElementById('chart_box').style.display = "block";
     model = await tf.loadLayersModel("http://localhost:3000/assets/model/model.json");
 }, false);
 
@@ -64,7 +65,6 @@ const getImageFromCanvas = (image) => {
     .toFloat()
     return tensor.div(255.0);
 };
-
 // --- predict and display ---
 const predict = async () => {
     let tensor = getImageFromCanvas(canvas);
@@ -89,8 +89,8 @@ const loadChart = (label, data, modelSelected) => {
             labels: label,
             datasets: [{
                 label: 'Predition ' + modelSelected,
-                backgroundColor: 'rgb(255,129,0)',
-                borderColor: 'rgb(196,98,0)',
+                backgroundColor: '#53d000',
+                borderColor: '#42a500',
                 data: data,
                 borderWidth: 2
             }]
@@ -126,5 +126,5 @@ const displayLabel = data => {
             max = data[i];
         }
     }
-    $(".prediction-text").html("Predicting you draw <b>"+maxIndex+"</b> with <b>"+Math.trunc( max*100 )+"%</b> confidence");
+    $(".prediction_text").html("Predicting you draw <b>"+maxIndex+"</b> with <b>"+Math.trunc( max*100 )+"% </b> confidence");
 };

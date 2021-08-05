@@ -30,3 +30,10 @@ node app.js --train_mode=0 --epochs=10 --batch_size=64
 ```bash
 node app.js --train_mode=1 --epochs=10 --batch_size=64 --model_save_path=file://./public/assets/model
 ```
+
+## Front-end
+### Launch locally
+```bash
+yarn start
+```
+Open http://localhost:3000/ with your browser

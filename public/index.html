@@ -5,36 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/style.css"/>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <!-- UIkit css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/css/uikit.min.css" />
+    <!-- UIkit js -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit-icons.min.js"></script>
     <title>Handwritten Digit Recognition</title>
 </head>
 <body>
-<!--STATUS MODEL-->
-<div id="status_div" class="row">
-    <h1 id="predval"></h1>
-    <div class="col status-model">
-        <p id="status"></p>
+<header>
+    <h1 class="title">Handwritten Digit Recognition with CNN</h1>
+</header>
+<div id="content">
+    <!-- draw section -->
+     <div id="canvas_div" class="">
+        <canvas id="canvas"></canvas>
+        <div class="buttons">
+            <button class="btn predict" id="predict" onclick="predict()">Predict</button>
+            <button class="btn clear" id="clear-pred" onclick="clearCanvas()">Clear</button>
+        </div>
     </div>
-</div>
-<!-- draw section -->
- <div id="canvas-div" class="canvas-block col">
-     <canvas id="canvas"></canvas>
-    <div class="buttons col">
-        <button class="btn btn-outline-dark" id="predict" onclick="predict()">Rozpoznaj</button>
-        <button class="btn btn-outline-dark" id="clear-pred" onclick="clearCanvas()">Wyczyść</button>
-    </div>
-</div>
-<!--RESULTS SECTION-->
-<div id="result_box" class="col">
-    <div class="result-col">
+    <!--RESULTS SECTION-->
+    <div id="result_box" class="">
         <canvas id="chart_box" class="char_style" width="100" height="100"></canvas>
-        <div class="col-12 prediction-text" role="alert"></div>
+        <div class="prediction_text" role="alert"></div>
     </div>
 </div>
 <!--  other scripts  -->
